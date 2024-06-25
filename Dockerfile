@@ -2,6 +2,7 @@ FROM debian:stable-slim
 
 LABEL maintainer = "Michael Schmidt <schmidt.software@gmail.com>"
 LABEL org.opencontainers.image.source = "https://github.com/schmidt-software/zerotier-root"
+LABEL com.docker.compose.project=""
 
 RUN apt-get update && \
     apt-get install -y curl && \
