@@ -4,6 +4,8 @@ services:
   zerotier:
     build: .
     image: ghcr.io/schmidt-software/zerotier-root:latest
+    labels:
+      - "com.docker.compose.project="
     ports:
       - "9993:9993/udp"
     cap_add:
