@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  zerotier:
+    build: .
+    # image: zerotier/zerotier:latest
+    ports:
+      - "9993:9993/udp"
+    cap_add:
+      - NET_ADMIN
+      - SYS_ADMIN
+    devices:
+      - /dev/net/tun
+    volumes:
+      - zerotier_data:/var/lib/zerotier-one
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+    networks:
+      - zerotier-net
+
+
+volumes:
+  zerotier_data:
+
+
+networks:
+  zerotier-net:
+    driver: overlay
